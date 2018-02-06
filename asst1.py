@@ -9,15 +9,15 @@ from queue import PriorityQueue
 import ast
 
 # Read the grid size
-size = int(input("Grid size: "))
+size = 5 #int(input("Grid size: "))
 
 # Read the start/goal location
-start_loc = ast.literal_eval(input("Start location: "))
+start_loc = (1,1) #ast.literal_eval(input("Start location: "))
 
-goal_loc = ast.literal_eval(input("Goal location: "))
+goal_loc = (5,4) #ast.literal_eval(input("Goal location: "))
 
 # The array of values
-values =  ast.literal_eval(input("Array of values: "))
+values =  [[4,3,3,4,2],[2,4,4,2,2],[3,4,5,3,2],[2,3,4,5,2],[4,3,3,2,4]]#ast.literal_eval(input("Array of values: "))
 
 
 # Use Pythagorean theorem as heuristic function
