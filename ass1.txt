@@ -1,6 +1,6 @@
 I leave this question as a specific type of Find Shortest Path.
 
-It contains start, goal location in a Matrix(Graph), the most common solution is Dijkstra algorithm.
+It contains start location, goal location in a Matrix(Graph), the most common solution is Dijkstra algorithm.
 
 But base on all search algorithm we learned in class, I decide to choice A* algorithm should have best performance in this type of question
 
