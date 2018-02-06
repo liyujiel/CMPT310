@@ -8,17 +8,16 @@ Author: Alex Li
 from queue import PriorityQueue
 import ast
 
-# read the grid size
+# Read the grid size
 size = int(input("Grid size: "))
 
-# read the start/goal location
+# Read the start/goal location
 start_loc = ast.literal_eval(input("Start location: "))
 
 goal_loc = ast.literal_eval(input("Goal location: "))
 
-# the array of values
+# The array of values
 values = ast.literal_eval(input("Array of values: "))
-# print(type(values))
 
 
 # Use Pythagorean theorem as heuristic function
@@ -28,7 +27,7 @@ def heuristic(a,b):
     return abs(x1-x2) + abs(y1-y2)
 
 
-# return path and recursively get the came_from node
+# Return path and recursively get the came_from node
 def reconstruct_path(came_from,current_node):
     if current_node!=None:
         if came_from.get(current_node):
@@ -37,42 +36,56 @@ def reconstruct_path(came_from,current_node):
         else:
             return [current_node]
 
-# use A* search algorithm
+# Use A* search algorithm
 def path_find(size, start_loc, goal_loc, values):
-    # initalize variables, g_score(goal score), h_score(heuristic score), 
+    # Initalize variables, g_score(the cost from current location to target location), h_score(heuristic cost), 
     # f_score is a PriorityQueue contains location and  h_score[location] as priority
     g_score = {}
     h_score = {}
     f_score = PriorityQueue()
 
-    # closedSet, openSet are two sets for track visited and willing visite locations, 
+    # ClosedSet, openSet are two sets for track visited and willing visite locations, 
     # openset should contains start point as first start location
     closedset = set()
     openset = set()
     openset.add(start_loc)
 
     # came_from contains the location come from.
-    # initially, start location should came from None
+    # And set start location came from None
     came_from = {}
     came_from[start_loc] = None
 
-    # initalize g_score, h_score, f_score values
+    # Initalize g_score, h_score, f_score values
     g_score[start_loc] = 0
     h_score[start_loc] = heuristic(start_loc,goal_loc)
     f_score.put(start_loc,h_score[start_loc])
+
+    # Start search from current the lowest cost node
     while len(openset)!=0:
         curr = f_score.get()
+
+        # If current location is the target location, use reconstruct_path function to return a list of node path
         if(curr == goal_loc):
             return reconstruct_path(came_from,goal_loc)
+
+        # Remove current node from non-visited set, we will start searching from this node, and add it in to visited set
         if(curr in openset):
             openset.remove(curr)
         closedset.add(curr)
+        
+        # Check all neighbours(4 sides) and make sure each neighbour location is still in the valid range
         for neighbour in ((curr[0]-1,curr[1]),(curr[0]+1,curr[1]),(curr[0],curr[1]-1),(curr[0],curr[1]+1)):
             if(0<neighbour[0]<=size and 0< neighbour[1]<=size):
+                # If neighbour already visited, jump over to next neighbour
                 if(neighbour in closedset):
                     continue
+
+                # Calculate the tentative cost use the value from start to current plus neighbour
                 tentative_g_score = g_score[curr] + int(values[neighbour[0]-1][neighbour[1]-1])
 
+                # If we not check current neighbour point yet, or current g_score smaller than the old neighbour's g_score
+                # we should set the flag we found a better path, and keep searching
+                # Otherwise, this path is end
                 if(not neighbour in openset):
                     openset.add(neighbour)
                     tentative_is_better = True
@@ -86,6 +99,7 @@ def path_find(size, start_loc, goal_loc, values):
                     g_score[neighbour] = tentative_g_score
                     h_score[neighbour] = heuristic(neighbour,goal_loc)
                     f_score.put(neighbour,h_score[neighbour])
+    # Once we searched all start_loc related point and still not found the goal_loc, return "Not Found"
     return "Not Found"        
 
 
