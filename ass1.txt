@@ -2,12 +2,12 @@ I leave this question as a specific type of Find Shortest Path.
 
 It contains start location, goal location in a Matrix(Graph), the most common solution is Dijkstra algorithm.
 
-But base on all search algorithm we learned in class, I decide to choice A* algorithm should have best performance in this type of question
+But base on all search algorithm we learned in class, I decide to choose A* algorithm should have best performance in this type of question
 
-There is 3 method in my python script:
+There are 3 methods in my python script:
 
     1. path_find(size, start_loc, goal_loc, values)
-        Main function represent A* algorithm, I leave the step by step explaination as comments in my script
+        Main function represents A* algorithm, I leave the step by step explanation as comments in my script
 
     2. heuristic(a,b)
         Heuristic function for calculate heuristic number, I use Pythagorean theorem for calculate distance between nodes
