@@ -1,13 +1,6 @@
 # A* search in matrix
 ## Description
-The assignment question is a specific type of Find Shortest Path. It contains start location,
-goal location in a Matrix(Graph), the most common solution is Dijkstra algorithm. But base on
-all search algorithms we learned in class, I decide to choose A* algorithm which should have a
-better performance than common solution. Because A* Algorithm contains both benefit from
-Dijkstra and Best-first Search Algorithm. The most important part in A* is I need define f(n) by
-myself, f(n) = g(n) + h(n), as we know g(n) is the value of the location, but it’s hard to decide the
-best heuristic. After searching online, the physical distance between two locations is the heuristic
-value.
+The assignment question is a variation of Find Shortest Path. The input is the start and goal location in a Matrix(Graph). I decided to choose A* algorithm for better performance than Dijkstra algorithm because A* Algorithm contains benefits from Dijkstra and Best-first Search Algorithm. The implementation needs definition for `f(n) = g(n) + h(n)`. `g(n)` is the value of the location, but the heuristic `h(n)` is indecisive. After searching online, the physical distance between two locations is the heuristic value.
 
 There is one thing I was trying to implement in this assignment is get the shortest path
 without make pre-process of input which is make it as a graph object. At this point, each time my
