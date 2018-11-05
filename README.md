@@ -1,17 +1,10 @@
 # A* search in matrix
 ## Description
-The assignment question is a variation of Find Shortest Path. The input is the start and goal location in a Matrix(Graph). I decided to choose A* algorithm for better performance than Dijkstra algorithm because A* Algorithm contains benefits from Dijkstra and Best-first Search Algorithm. The implementation needs definition for `f(n) = g(n) + h(n)`. `g(n)` is the value of the location, but the heuristic `h(n)` is indecisive. After searching online, the physical distance between two locations is the heuristic value.
+The assignment question is a variation of Find Shortest Path. The input is the start and goal location in a Matrix(Graph). A* algorithm outperforms Dijkstra algorithm because A* Algorithm contains benefits from Dijkstra and Best-first Search Algorithm. The implementation needs definition for `f(n) = g(n) + h(n)`. `g(n)` is the value of the location, but the heuristic `h(n)` is indecisive. After searching online, the physical distance between two locations is the heuristic value.
 
-There is one thing I was trying to implement in this assignment is get the shortest path
-without make pre-process of input which is make it as a graph object. At this point, each time my
-script searches the current location will try to get 4 different side locations as neighbor and check
-it still in the range by check location coordinates.
+Use a graph object to avoid pre-processing inputs for the shortest path. The script will check for in-range condition in 4 neighbor location coordinates for each "current location". 
 
-After I got the goal location, another problem I faced is the assignment required return a
-list of target. It will waste space and hard to keep if I use a list contains visited location through
-searching process. So, I create a map named came_from, each time I get a better result, I will
-store the neighbor location as key, and current location as value. Once the search is done, I can
-track back the target location recursively or return “Not Found”.
+The assignment requires to return a list of target. A list containing visited location is space-inefficient and unmanageable. So, the script will use a map named `came_from` to store the best neighbor location as key and current location as value in each update. The script will track back the target location recursively or return “Not Found” after search completes.
 
 ## Overview of the script
 There are 3 methods in my python script:
